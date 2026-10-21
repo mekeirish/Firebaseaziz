@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل تعلم فايربेस</title>
+    <style>
+        :root {
+            --bg-color: #1e272e;
+            --card-bg: #2c3e50;
+            --primary: #f39c12;
+            --text-main: #ecf0f1;
+            --text-sub: #bdc3c7;
+            --accent: #27ae60;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Tahoma, sans-serif;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 0 0 5px 0;
+        }
+
+        p.subtitle {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin: 0;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: #34495e;
+            border-radius: 10px;
+            padding: 5px;
+            direction: ltr; /* Pour garder l'ordre des étapes 1 à 4 de gauche à droite ou inversé selon préférence */
+        }
+
+        .step-dot {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-sub);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background-color: var(--primary);
+            color: #111;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        ol {
+            padding-right: 20px;
+            padding-left: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .tip-box {
+            background-color: #34495e;
+            border-right: 4px solid var(--primary);
+            border-left: none;
+            padding: 10px 15px;
+            border-radius: 8px 0 0 8px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            color: #ddd;
+        }
+
+        code {
+            background-color: #111;
+            color: #f1c40f;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        pre code {
+            display: block;
+            padding: 10px;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-prev { background-color: #7f8c8d; color: white; }
+        .btn-next { background-color: var(--accent); color: white; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+    </style>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#050608">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icon.png">
+</head>
+<body>
+
+    <header>
+        <h1>🔥 دليل إنشاء مشروع Firebase</h1>
+        <p class="subtitle">دليل خطوة بخطوة للمبتدئين</p>
+    </header>
+
+    <div class="progress-bar">
+        <div class="step-dot active" onclick="goToStep(1)">الخطوة 1</div>
+        <div class="step-dot" onclick="goToStep(2)">الخطوة 2</div>
+        <div class="step-dot" onclick="goToStep(3)">الخطوة 3</div>
+        <div class="step-dot" onclick="goToStep(4)">الخطوة 4</div>
+    </div>
+
+    <div class="card">
+        <!-- الخطوة 1 -->
+        <div class="step-content active" id="step-1">
+            <h2>1. الوصول إلى وحدة التحكم وتسجيل الدخول</h2>
+            <ol>
+                <li>افتح المتصفح وانتقل إلى الرابط <code>console.firebase.google.com</code>.</li>
+                <li>سجل الدخول باستخدام حساب <strong>Google / Gmail</strong> الخاص بك.</li>
+                <li>بمجرد الانتقال إلى لوحة التحكم، انقر على الزر الكبير <strong>"إضافة مشروع"</strong> (Add project).</li>
+            </ol>
+            <div class="tip-box">
+                💡 <strong>نصيحة:</strong> استخدم حساب جوجل المرتبط بالحساب الذي تخطط من خلاله لإدارة تطبيقاتك.
+            </div>
+        </div>
+
+        <!-- الخطوة 2 -->
+        <div class="step-content" id="step-2">
+            <h2>2. تكوين المشروع</h2>
+            <ol>
+                <li><strong>اسم المشروع:</strong> اكتب اسم تطبيقك (مثال: <code>MonAppTest</code>) ووافق على الشروط والأحكام.</li>
+                <li><strong>Google Analytics (تحليلات جوجل):</strong> سيطلب منك Firebase تفعيل هذه الميزة.
+                    <ul>
+                        <li>بالنسبة لمشروع بسيط أو تجريبي، يمكنك <strong>تعطيل</strong> هذا الخيار.</li>
+                        <li>انقر على <strong>"إنشاء المشروع"</strong> (Create project).</li>
+                    </ul>
+                </li>
+                <li>انتظر بضع ثوانٍ بينما يقوم جوجل بإعداد البنية التحتية الخاصة بك، ثم انقر على <strong>"متابعة"</strong> بمجرد الانتهاء.</li>
+            </ol>
+        </div>
+
+        <!-- الخطوة 3 -->
+        <div class="step-content" id="step-3">
+            <h2>3. إضافة تطبيق ويب (Web App)</h2>
+            <ol>
+                <li>في الصفحة الرئيسية لمشروعك الجديد، ستظهر لك عدة أيقونات (iOS و Android و Web و Unity).</li>
+                <li>انقر على أيقونة الويب <code>&lt;/&gt;</code>.</li>
+                <li>اكتب اسمًا مستعارًا لتطبيقك (مثال: <code>Web App 1</code>).</li>
+                <li>اترك خيار <em>Firebase Hosting</em> غير محدد في الوقت الحالي.</li>
+                <li>انقر على <strong>"تسجيل التطبيق"</strong> (Register app).</li>
+            </ol>
+        </div>
+
+        <!-- الخطوة 4 -->
+        <div class="step-content" id="step-4">
+            <h2>4. استرداد رمز التهيئة (Configuration)</h2>
+            <ol>
+                <li>سيعرض لك Firebase الآن كتلة كود JavaScript تحت عنوان <em>"إضافة حزمة تطوير البرامج SDK لـ Firebase"</em>.</li>
+                <li>حدد موقع الكتلة التي تشبه الشكل التالي:
+<pre><code>const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "...firebaseapp.com",
+  projectId: "...",
+  // ...
+};</code></pre>
+                </li>
+                <li>قم بانسخ هذا الكود بالكامل.</li>
+                <li>يمكنك الآن لصقه في أداة <strong>Firebase Injector</strong> أو إعطائه للذكاء الاصطناعي لدمجه في مشروعك!</li>
+            </ol>
+            <div class="tip-box">
+                🔑 <strong>الأمان:</strong> المفاتيح الواردة هنا تحدد مشروعك بدقة، احتفظ بها في مكان آمن داخل ملفات مصدرك.
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn-prev" id="btnPrev" onclick="changeStep(-1)" disabled>السابق</button>
+            <button class="btn-next" id="btnNext" onclick="changeStep(1)">التالي</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function updateUI() {
+            document.querySelectorAll('.step-content').forEach((el, index) => {
+                el.classList.toggle('active', index + 1 === currentStep);
+            });
+
+            document.querySelectorAll('.step-dot').forEach((el, index) => {
+                el.classList.toggle('active', index + 1 === currentStep);
+            });
+
+            document.getElementById('btnPrev').disabled = (currentStep === 1);
+            
+            const btnNext = document.getElementById('btnNext');
+            if (currentStep === totalSteps) {
+                btnNext.innerText = "انتهى !";
+                btnNext.style.backgroundColor = "#f39c12";
+            } else {
+                btnNext.innerText = "التالي";
+                btnNext.style.backgroundColor = "#27ae60";
+            }
+        }
+
+        function changeStep(delta) {
+            currentStep += delta;
+            if (currentStep < 1) currentStep = 1;
+            if (currentStep > totalSteps) currentStep = totalSteps;
+            updateUI();
+        }
+
+        function goToStep(step) {
+            currentStep = step;
+            updateUI();
+        }
+    </script>
+<script>
+if ('serviceWorker' in navigator) {
+window.addEventListener('load',()=>{
+navigator.serviceWorker.register('./sw.js').catch(err=>console.error(err));
+});
+}
+</script>
+</body>
+</html>
