@@ -8,10 +8,10 @@
         :root {
             --bg-color: #1e272e;
             --card-bg: #2c3e50;
-            --primary: #f39c12;
+            --primary: #0000FF;
             --text-main: #ecf0f1;
             --text-sub: #bdc3c7;
-            --accent: #27ae60;
+            --accent: #FF0000;
         }
 
         body {
@@ -151,7 +151,7 @@
             transition: background 0.2s;
         }
 
-        .btn-prev { background-color: #7f8c8d; color: white; }
+        .btn-prev { background-color: #FFFF00; color: white; }
         .btn-next { background-color: var(--accent); color: white; }
         button:disabled { opacity: 0.3; cursor: not-allowed; }
     </style>
@@ -261,10 +261,10 @@
             const btnNext = document.getElementById('btnNext');
             if (currentStep === totalSteps) {
                 btnNext.innerText = "انتهى !";
-                btnNext.style.backgroundColor = "#f39c12";
+                btnNext.style.backgroundColor = "#0000FF";
             } else {
                 btnNext.innerText = "التالي";
-                btnNext.style.backgroundColor = "#27ae60";
+                btnNext.style.backgroundColor = "#FF0000";
             }
         }
 
